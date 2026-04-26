@@ -1,7 +1,7 @@
 import { getCurrentBaseCurrency, setCurrentBaseCurrency, fetchRates, getAllRates, setAllRates } from './api.js';
 import { addToHistory } from './history.js';
 
-let isUpdating = false;
+let isUpdating = false; //блокировка, чтобы не запускать конвертацию одновременно из двух полей
 
 export function getIsUpdating() {
     return isUpdating;
@@ -23,7 +23,7 @@ export async function convert(sourceInput, targetInput, fromCurrency, toCurrency
     if (isUpdating) return;
     isUpdating = true;
 
-    const sourceValue = parseFloat(sourceInput.value);
+    const sourceValue = parseFloat(sourceInput.value); //превращает строку в число с плавающей точкой
 
     if (isNaN(sourceValue) || sourceValue <= 0) {
         targetInput.value = '';
@@ -38,8 +38,8 @@ export async function convert(sourceInput, targetInput, fromCurrency, toCurrency
 
     const allRates = getAllRates();
     if (allRates[toCurrency]) {
-        const exchangeRate = allRates[toCurrency];
-        const convertedAmount = sourceValue * exchangeRate;
+        const exchangeRate = allRates[toCurrency]; //берет курс нужной валюты
+        const convertedAmount = sourceValue * exchangeRate; //формула конвертации
         targetInput.value = convertedAmount.toFixed(2);
         
         // Сохранение операции в историю

@@ -4,7 +4,7 @@ import { loadHistory, getConversionHistory, clearHistory as clearHistoryData } f
 import { convert, saveUserPreferences, getIsUpdating, setIsUpdating } from './converter.js';
 import { renderHistory, repeatConversion, toggleHistory, populateCurrencies } from './ui-helpers.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { //ждет, пока вся HTML-страница не загрузится, и только потом выполняет код
     const amountInput1 = document.getElementById('amount1');
     const amountInput2 = document.getElementById('amount2');
     const fromCurrencySelect = document.getElementById('from-currency');
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     toCurrencySelect.addEventListener('change', () => {
-        saveUserPreferences(fromCurrencySelect, toCurrencySelect, amountInput1);
+        saveUserPreferences(fromCurrencySelect, toCurrencySelect, amountInput1); //сохраняет выбор пользователя в localStorage
         const amount1Val = parseFloat(amountInput1.value);
         const amount2Val = parseFloat(amountInput2.value);
         

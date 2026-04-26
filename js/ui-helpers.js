@@ -14,6 +14,7 @@ export function renderHistory(historyList, repeatCallback) {
         return;
     }
     
+    //map - преобразует массив объектов в массив HTML-строк
     historyList.innerHTML = conversionHistory.map(item => `
         <div class="history-item" data-id="${item.id}">
             <div class="history-time">${item.timestamp}</div>
@@ -24,13 +25,13 @@ export function renderHistory(historyList, repeatCallback) {
             </div>
             <button class="history-repeat">Повторить</button>
         </div>
-    `).join('');
+    `).join(''); //соединяет все строки в одну
     
     // Добавляем обработчики для кнопок повтора
     if (repeatCallback) {
         document.querySelectorAll('.history-repeat').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const id = parseInt(btn.closest('.history-item').dataset.id);
+                const id = parseInt(btn.closest('.history-item').dataset.id); //closest - находит ближайший родительский элемент с классом ".history-item", dataset - читает значение атрибута data-id
                 repeatCallback(id);
             });
         });
@@ -76,7 +77,7 @@ export async function populateCurrencies(
     if (!success) return;
 
     const allRates = getAllRates();
-    const currencies = Object.keys(allRates);
+    const currencies = Object.keys(allRates); //получает массив кодов валют, например 'USD', 'EUR'
 
     // Очищаем списки перед заполнением
     fromCurrencySelect.innerHTML = '';
@@ -86,7 +87,7 @@ export async function populateCurrencies(
         const option1 = document.createElement('option');
         option1.value = currency;
         option1.textContent = currency;
-        fromCurrencySelect.appendChild(option1);
+        fromCurrencySelect.appendChild(option1); //добавляет созданный элемент в выпадающий список
 
         const option2 = document.createElement('option');
         option2.value = currency;
