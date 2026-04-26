@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер Валют</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="./script.js"></script>
+</head>
+<body>
+    <div class="converter-container">
+        <h1>Конвертер Валют</h1>
+
+        <div class="group">
+            <div class="input-group left">
+                <div class="input-selection">
+                    <input type="number" id="amount1" value="1">
+                    <input type="number" id="amount2" value="1">
+                </div>
+            </div>
+            <div class="input-group right">
+                <div class="result-selection">
+                    <select id="from-currency"></select>
+                    <select id="to-currency"></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="history-container">
+            <button id="toggle-history">Показать историю</button>
+            <div id="history-panel">
+                <div class="history-header">
+                    <span>Последние 10 конвертаций</span>
+                    <button id="clear-history">Очистить историю</button>
+                </div>
+                <div id="history-list"></div>
+            </div>
+        </div>
+    </div>  
+</body>
+</html>
+
+
+
